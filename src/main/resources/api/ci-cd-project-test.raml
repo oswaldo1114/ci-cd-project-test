@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: ci-cd-project-test
+version: v1
+
+types:
+  user: !include types/user-type.raml
+
+traits:
+  clientIdPolicy: !include traits/client-id-enforcement.raml
+
+
+/users:
+  is: [clientIdPolicy]
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: user
